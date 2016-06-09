@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>InfoCentre Ticket</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+	<link rel="icon" href="Contents/Resources/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut" href="Contents/Resources/favicon.ico" type="image/x-icon"/><style>		html, body {		
+			margin-top:0px;
+			margin-left:0px;
+			margin-right:0px;
+			height: 100%;
+			overflow: hidden;
+			background-color: lightblue;
+			-webkit-backface-visibility: hidden;
+		}
+		#appLoadingIndicator {
+			position:absolute;
+			bottom:25px;
+			left:0px;		
+			width:  100%;
+			height: 25;
+			margin-left: 0%;
+			margin-right: 0%;
+		}	
+		.progress {
+			position: relative;
+			height: 4px;
+			display: block;
+			width: 100%;
+			background-color: #AAD4FF;
+			border-radius: 2px;
+			margin: 0.5rem 0 1rem 0;
+			overflow: hidden
+		}
+		.progress .determinate {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			background-color: lightblue;
+			transition: width .3s linear
+		}
+		.progress .indeterminate {
+			background-color: lightblue;
+		}
+		.progress .indeterminate:before {
+			content: '';
+			position: absolute;
+			background-color: inherit;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			will-change: left, right;
+			-webkit-animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+			animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite
+		}
+		.progress .indeterminate:after {
+			content: '';
+			position: absolute;
+			background-color: inherit;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			will-change: left, right;
+			-webkit-animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+			animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+			-webkit-animation-delay: 1.15s;
+			animation-delay: 1.15s
+		}
+		@-webkit-keyframes indeterminate {
+			0% {
+				left: -35%;
+				right: 100%
+			}
+			60% {
+				left: 100%;
+				right: -90%
+			}
+			100% {
+				left: 100%;
+				right: -90%
+			}
+		}
+		@keyframes indeterminate {
+			0% {
+				left: -35%;
+				right: 100%
+			}
+			60% {
+				left: 100%;
+				right: -90%
+			}
+			100% {
+				left: 100%;
+				right: -90%
+			}
+		}
+		@-webkit-keyframes indeterminate-short {
+			0% {
+				left: -200%;
+				right: 100%
+			}
+			60% {
+				left: 107%;
+				right: -8%
+			}
+			100% {
+				left: 107%;
+				right: -8%
+			}
+		}
+		@keyframes indeterminate-short {
+			0% {
+				left: -200%;
+				right: 100%
+			}
+			60% {
+				left: 107%;
+				right: -8%
+			}
+			100% {
+				left: 107%;
+				right: -8%
+			}
+		}
+		#bootstrap {
+			background-color: #AAD4FF;
+			position:absolute;
+			top:0px;
+			left:0px;
+			width:100%;
+			height:100%;
+		}
+		#appLoadingIcon {
+			background-color:transparent;
+			z-index: 99999;
+			position:absolute;
+			top:0px;
+			left:0px;
+			background-image:url(Contents/Resources/startup/logo.png);
+			width:100%;
+			height:100%;
+			background-repeat:no-repeat;
+			background-attachment:fixed;
+			background-position:center center;
+		}	
+		@-webkit-keyframes slideInDown {
+			0% {
+				opacity: 0;
+				-webkit-transform: translateY(-2000px);
+			}
+
+			100% {
+				-webkit-transform: translateY(0);
+			}
+		}
+		@-moz-keyframes slideInDown {
+			0% {
+				opacity: 0;
+				-moz-transform: translateY(-2000px);
+			}
+
+			100% {
+				-moz-transform: translateY(0);
+			}
+		}
+		@-o-keyframes slideInDown {
+			0% {
+				opacity: 0;
+				-o-transform: translateY(-2000px);
+			}
+
+			100% {
+				-o-transform: translateY(0);
+			}
+		}
+		@keyframes slideInDown {
+			0% {
+				opacity: 0;
+				transform: translateY(-2000px);
+			}
+
+			100% {
+				transform: translateY(0);
+			}
+		}
+		.animated {
+			-webkit-animation-duration: 1s;
+			   -moz-animation-duration: 1s;
+				 -o-animation-duration: 1s;
+					animation-duration: 1s;
+			-webkit-animation-fill-mode: both;
+			   -moz-animation-fill-mode: both;
+				 -o-animation-fill-mode: both;
+					animation-fill-mode: both;
+		}	
+		.animated2 {
+			-webkit-animation-duration: 2s;
+			   -moz-animation-duration: 2s;
+				 -o-animation-duration: 2s;
+					animation-duration: 2s;
+			-webkit-animation-fill-mode: both;
+			   -moz-animation-fill-mode: both;
+				 -o-animation-fill-mode: both;
+					animation-fill-mode: both;
+		}		
+		.slideInDown {
+			-webkit-animation-name: slideInDown;
+			-moz-animation-name: slideInDown;
+			-o-animation-name: slideInDown;
+			animation-name: slideInDown;
+		}
+		@-webkit-keyframes fadeIn {
+			0% {opacity: 0;}
+			100% {opacity: 1;}
+		}
+		@-moz-keyframes fadeIn {
+			0% {opacity: 0;}
+			100% {opacity: 1;}
+		}
+		@-o-keyframes fadeIn {
+			0% {opacity: 0;}
+			100% {opacity: 1;}
+		}
+		@keyframes fadeIn {
+			0% {opacity: 0;}
+			100% {opacity: 1;}
+		}
+		.fadeIn {
+			-webkit-animation-name: fadeIn;
+			-moz-animation-name: fadeIn;
+			-o-animation-name: fadeIn;
+			animation-name: fadeIn;
+		}		
+		@-webkit-keyframes slideOutUp {
+			0% {
+				-webkit-transform: translateY(0);
+			}
+
+			100% {
+				opacity: 0;
+				-webkit-transform: translateY(-2000px);
+			}
+		}
+		@-moz-keyframes slideOutUp {
+			0% {
+				-moz-transform: translateY(0);
+			}
+
+			100% {
+				opacity: 0;
+				-moz-transform: translateY(-2000px);
+			}
+		}
+		@-o-keyframes slideOutUp {
+			0% {
+				-o-transform: translateY(0);
+			}
+
+			100% {
+				opacity: 0;
+				-o-transform: translateY(-2000px);
+			}
+		}
+		@keyframes slideOutUp {
+			0% {
+				transform: translateY(0);
+			}
+
+			100% {
+				opacity: 0;
+				transform: translateY(-2000px);
+			}
+		}
+		.slideOutUp {
+			-webkit-animation-name: slideOutUp;
+			-moz-animation-name: slideOutUp;
+			-o-animation-name: slideOutUp;
+			animation-name: slideOutUp;
+		}
+	.omneedia-overlay{z-index: 9999999999;position:absolute;left:0px;top:0px;width:100%;height:100%;display:none;}
+</style></head>
+	<body class="animated2 fadeIn">
+		<div class="omneedia-overlay"></div>
+		<div id="bootstrap" class="animated2 fadeIn">
+			<div class="SystemScreen front face">
+				<div id="appLoadingFailed"></div>
+				<div id="appLoadingIcon" class="animated slideInDown"></div>
+				<div id="preloader"></div>
+				<div id="appLoadingIndicator">
+          			<div class="progress">
+            			<div class="indeterminate"></div>
+          			</div>
+		    	</div>
+			</div>
+		</div>
+			<script src="http://cdn.omneedia.com/public/requirejs/require.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+		var bootstraploader=function(tab,i,cb) {
+			if (i<=tab.length) Require([tab[i]],function(){
+				bootstraploader(tab,i+1,cb);
+			}); else cb();
+		};
+		setTimeout(function(){
+			Require(["Contents/Settings"], function() {
+				bootstraploader(Settings.FRAMEWORKS,0, function(){
+					Require(["Contents/Application/app"], function() {					
+						
+					});
+				});		
+			});
+		},1000);
+		</script></body></html>

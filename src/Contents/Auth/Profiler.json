@@ -1,0 +1,31 @@
+{
+	"profiles": [
+		"CLI",
+		"SII",
+		"GEST",
+		"ASP"
+	],
+	"profile": {
+		"SII": [     
+			"stephane.zucatti",		
+			"catherine.baglin",
+			"gil.romand",
+			"jean-michel.ranchoux",
+			"michel.gomez",
+			"alexandre.laugier",
+			"jean-philippe.tenaud"
+		],
+		"GEST": [
+			"catherine.baglin",
+			"gil.romand"
+		],
+		"CLI": [
+			"dominique.gey",
+			"christophe.jean",
+			"remy.roux"
+		],
+		"ASP": [
+			"michel.debono"
+		]
+	}
+}
